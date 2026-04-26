@@ -21,7 +21,7 @@ export const createNote = (req, res) => {
   }
 
   return res.status(500).json({
-    status: 'fail',
+    status: 'failed',
     message: 'Catatan gagal ditambahkan'
   });
 };
@@ -43,7 +43,7 @@ export const getNoteById = (req, res) => {
     });
   }
   return res.status(404).json({
-    status: 'fail',
+    status: 'failed',
     message: 'Catatan tidak ditemukan'
   });
 };
@@ -62,7 +62,7 @@ export const editNoteById = (req, res) => {
     });
   };
   return res.status(404).json({
-    status: 'fail',
+    status: 'failed',
     message: 'Gagal memperbarui catatan. Id tidak ditemukan'
   });
 };
@@ -79,7 +79,7 @@ export const deleteNoteById = (req, res) => {
     });
   }
   return res.status(404).json({
-    status: 'fail',
+    status: 'failed',
     message: 'Gagal menghapus catatan, id gagal ditemukan'
   });
 };
