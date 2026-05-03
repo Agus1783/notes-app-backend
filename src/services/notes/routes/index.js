@@ -1,20 +1,18 @@
 // File khusus yang berisi definisi routing aplikasi
-import express from 'express';
-
+import express from "express";
 import {
   createNote,
+  getAllNotes,
+  getNoteById,
   editNoteById,
   deleteNoteById,
-  getNotes,
-  getNoteById
-} from '../controller/note-controller.js';
-
+} from "../controller/note-controller.js";
+import validate from "../../../middlewares/validate.js";
+import { notePayloadSchema } from "../../../services/notes/validator/schema.js";
 const router = express.Router();
-
-router.post('/notes', createNote);
-router.get('/notes', getNotes);
-router.get('/notes/:id', getNoteById);
-router.put('/notes/:id', editNoteById);
-router.delete('/notes/:id', deleteNoteById);
-
+router.post("/notes", validate(notePayloadSchema), createNote);
+router.get("/notes", getAllNotes);
+router.get("/notes/:id", getNoteById);
+router.put("/notes/:id", validate(notePayloadSchema), editNoteById);
+router.delete("/notes/:id", deleteNoteById);
 export default router;
