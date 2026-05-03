@@ -1,6 +1,6 @@
 // Memuat seluruh fungsi-fungsi controller yang digunakan pada berkas routes
 import { nanoid } from 'nanoid';
-import notes from '../src/notes.js';
+import notes from '../notes.js';
 
 export const createNote = (req, res) => {
   const { title = 'Untitled', tags, body } = req.body;
