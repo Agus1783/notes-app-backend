@@ -21,6 +21,12 @@ export const createNote = (req, res, next) => {
 };
 
 export const getNotes = (req, res) => {
+  const { title = "" } = req.query;
+  // menampilkan catatan berdasarkan title. Jika ditemukan, ia akan mengembalikan catatan yang sesuai.
+  if (title !== "") {
+    const note = notes.filter((note) => note.title === title);
+    return response(res, 200, "success", { notes: note });
+  }
   return res.json({
     status: "success",
     data: { notes },
