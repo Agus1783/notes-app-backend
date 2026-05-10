@@ -62,3 +62,5 @@ class UserRepositories {
     return id;
   }
 }
+
+export default UserRepositories;

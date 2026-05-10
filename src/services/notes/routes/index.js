@@ -6,7 +6,7 @@ import {
   getNoteById,
   editNote,
   deleteNote,
-} from "../controller/note-controller.js";
+} from "../controllers/note-controller.js";
 import validate from "../../../middlewares/validate.js";
 import validateQuery from "../../../middlewares/validateQuery.js";
 import {
