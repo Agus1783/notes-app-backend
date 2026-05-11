@@ -1,9 +1,11 @@
 import { Pool } from "pg";
 import { nanoid } from "nanoid";
+import CollaborationRepositories from "../../collaborations/repositories/collaboration-repositories.js";
 
 class NoteRepositories {
   constructor() {
     this.Pool = new Pool();
+    this.collaborationRepositories = CollaborationRepositories;
   }
 
   async createNote({ title, body, tags, owner }) {
@@ -73,6 +75,18 @@ class NoteRepositories {
       return null;
     }
     return result.rows[0];
+  }
+
+  async verifyNoteAccess(noteId, userId) {
+    const ownerResult = await this.verifyNoteOwner(noteId, userId);
+    if (ownerResult) {
+      return ownerResult;
+    }
+    const result = await this.collaborationRepositories.verifyCollaborator(
+      noteId,
+      userId,
+    );
+    return result;
   }
 }
 
